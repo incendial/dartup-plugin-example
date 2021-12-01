@@ -1,0 +1,8 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    - test/code_example.dart
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

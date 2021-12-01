@@ -1,0 +1,17 @@
+name: string_finder_plugin
+version: 1.0.0
+description: String finder plugin example
+publish_to: none
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  analyzer: ">=2.4.0 <2.8.0"
+  analyzer_plugin: ^0.8.0
+  source_span: ^1.8.0
+
+dev_dependencies:
+  lints: ^1.0.1
+  test: ^1.16.8
+
