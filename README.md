@@ -1,4 +1,4 @@
-# dartup-plugin-example
+# Dart Up Plugin Example
 Dart analyzer plugin example for Dart Up 2021
 
 ## Installation
