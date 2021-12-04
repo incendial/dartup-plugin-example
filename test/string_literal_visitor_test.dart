@@ -15,7 +15,7 @@ void main() {
 
       parseResult.unit.visitChildren(visitor);
 
-      expect(visitor.stringLiterals.length, 5);
+      expect(visitor.stringLiterals.length, 4);
     });
   });
 }

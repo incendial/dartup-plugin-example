@@ -4,6 +4,7 @@ import 'package:analyzer/dart/analysis/context_builder.dart';
 import 'package:analyzer/dart/analysis/context_locator.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/file_system/file_system.dart';
+import 'package:analyzer/source/line_info.dart';
 // ignore: implementation_imports
 import 'package:analyzer/src/dart/analysis/driver.dart';
 // ignore: implementation_imports
@@ -136,7 +137,6 @@ class StringFinderPlugin extends ServerPlugin {
     ResolvedUnitResult analysisResult,
   ) {
     final visitor = StringLiteralVisitor();
-
     analysisResult.unit.visitChildren(visitor);
 
     return visitor.stringLiterals.map((literal) {
@@ -149,23 +149,25 @@ class StringFinderPlugin extends ServerPlugin {
 
       return literalToAnalysisErrorFixes(
         SourceSpan(
-          SourceLocation(
-            offset,
-            sourceUrl: sourceUrl,
-            line: offsetLocation.lineNumber,
-            column: offsetLocation.columnNumber,
-          ),
-          SourceLocation(
-            end,
-            sourceUrl: sourceUrl,
-            line: endLocation.lineNumber,
-            column: endLocation.columnNumber,
-          ),
+          _createSourceLocation(offset, sourceUrl, offsetLocation),
+          _createSourceLocation(end, sourceUrl, endLocation),
           analysisResult.content.substring(offset, end),
         ),
       );
     });
   }
+
+  SourceLocation _createSourceLocation(
+    int offset,
+    Uri sourceUrl,
+    CharacterLocation location,
+  ) =>
+      SourceLocation(
+        offset,
+        sourceUrl: sourceUrl,
+        line: location.lineNumber,
+        column: location.columnNumber,
+      );
 
   /// AnalysisDriver doesn't fully resolve files that are added via `addFile`; they need to be either explicitly requested
   /// via `getResult`/etc, or added to `priorityFiles`.
