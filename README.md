@@ -12,7 +12,7 @@ Dart analyzer plugin example for Dart Up 2021
   dart pub get
   ```
 3. Go to tools/analyzer_plugin/pubspec.yaml
-4. Since the package is not published, you need to add absolute path of the root package (dartup-plugin-example) and intall dependecies.
+4. Since the package is not published, you need to add absolute path of the root package (dartup-plugin-example) and install dependecies.
 
 ## Install the example app
 
